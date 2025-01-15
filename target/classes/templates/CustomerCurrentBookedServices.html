@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>List of Services</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Customer Booked Services</h2>
+
+    <!-- Table to display services -->
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            
+            <th>Customer Name</th>
+            <th>Booking Id</th>
+            <th>Booking Status</th>
+			<th>Booking date</th>
+			<th>Skill</th>   
+			<th>Actions</th>        
+
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Iterate over each service -->
+        <tr th:each="ServiceProviderBookingDTO : ${ServiceProviderBookingDTO}">
+
+         
+            <td th:text="${ServiceProviderBookingDTO.customerName}"></td>
+            <td th:text="${ServiceProviderBookingDTO.bookingId}"></td>
+            <td th:text="${ServiceProviderBookingDTO.bookingStatus}"></td>
+			<td th:text="${ServiceProviderBookingDTO.bookingDate}"></td>
+			<td th:text="${ServiceProviderBookingDTO.skill}"></td>
+			<td>
+							
+				<form th:action="@{/Customer/CancelBooking/{bookingId}/{bookingStatus}(bookingId=${ServiceProviderBookingDTO.bookingId},  bookingStatus=${ServiceProviderBookingDTO.bookingStatus})}" method="post">
+				       <button type="submit">Cancel Booking</button>
+				</form>
+							
+			 </td>
+			 <td>			 <div th:if="${message}" class="alert alert-danger mt-3">
+			         <p th:text="${message}"></p>
+			     </div></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
