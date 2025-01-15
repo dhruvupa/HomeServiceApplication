@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Welcome Customer</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+	<h1 class="text-center mb-4">Welcome Customer</h1>
+
+	<!-- Center the form container -->
+	<div class="d-flex justify-content-center">
+		<div class="btn-group-vertical w-50">
+			<form>
+				<button type="submit" th:formaction="@{/Customer/allservices}" method="get" class="btn btn-light btn-lg mb-3 w-100">Search Service</button>
+				<button type="submit" th:formaction="@{/Customer/rateService}" method="get" class="btn btn-light btn-lg mb-3 w-100">Past Booked Service</button>
+				<button type="submit" th:formaction="@{/Customer/CustomerCurrentBookedServices}" formmethod="get" class="btn btn-light btn-lg mb-3 w-100">Current Booked Service</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>

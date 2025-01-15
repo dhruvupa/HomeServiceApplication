@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Service Provider Bookings</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Service Provider Bookings</h1>
+
+  <table class="table table-striped">
+    <thead class="thead-dark">
+    <tr>
+      <th>Customer Name</th>
+      <th>Skill</th>
+      <th>Booking Date</th>
+      <th>Booking Status</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Iterate over each booking -->
+    <tr th:each="Booking : ${ServiceProviderBookingDTO}">
+      <td th:text="${Booking.customerName}"></td>
+      <td th:text="${Booking.skill}"></td>
+      <td th:text="${Booking.bookingDate}"></td>
+      <td th:text="${Booking.bookingStatus}"></td>
+      <td>
+        <!-- Accept button -->
+        <form th:action="@{/ServiceProvider/UpdateBookingStatus}" method="post" style="display:inline;">
+          <input type="hidden" name="bookingId" th:value="${Booking.bookingId}" />
+          <input type="hidden" name="status" value="Accepted" />
+          <button type="submit" class="btn btn-success"
+                  th:disabled="${Booking.bookingStatus == 'Accepted' or Booking.bookingStatus == 'Rejected'}">
+            Accept
+          </button>
+        </form>
+
+        <!-- Reject button -->
+        <form th:action="@{/ServiceProvider/UpdateBookingStatus}" method="post" style="display:inline;">
+          <input type="hidden" name="bookingId" th:value="${Booking.bookingId}" />
+          <input type="hidden" name="status" value="Rejected" />
+          <button type="submit" class="btn btn-danger"
+                  th:disabled="${Booking.bookingStatus == 'Accepted' or Booking.bookingStatus == 'Rejected'}">
+            Reject
+          </button>
+        </form>
+
+        <!-- Verify OTP Button, only visible if booking is accepted -->
+        <!-- Verify OTP Button (navigates to OTP form) -->
+        <form th:action="@{/payment/VerifyOTP}" method="get" style="display:inline;">
+          <input type="hidden" name="bookingId" th:value="${Booking.bookingId}" />
+          <button type="submit" class="btn btn-primary" th:disabled="${Booking.bookingStatus != 'Accepted'}">
+            Verify OTP
+          </button>
+        </form>
+
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

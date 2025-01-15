@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Wallet</title>
+</head>
+<body>
+    <h1>Wallet Balance</h1>
+    <p>User ID: <span th:text="${wallet.userId}"></span></p>
+    <p>Balance: $<span th:text="${wallet.balance}"></span></p>
+    <form action="/wallet/addFunds" method="post">
+        <input type="hidden" name="userId" value="1" />
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" required />
+        <button type="submit">Add Funds</button>
+    </form>
+</body>
+</html>

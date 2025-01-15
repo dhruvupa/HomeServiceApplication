@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Verify OTP</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Verify OTP</h1>
+
+    <!-- OTP Form to enter the OTP code -->
+    <form th:action="@{/payment/VerifyOTPService}" method="post">
+        <div class="form-group">
+            <label for="bookingId">Booking ID</label>
+            <input type="text" id="bookingId" name="bookingId" class="form-control" th:value="${bookingId}" readonly />
+        </div>
+
+        <div class="form-group">
+            <label for="otpCode">Enter OTP</label>
+            <input type="text" id="otpCode" name="otpCode" class="form-control" th:value="${otpCode}" required />
+        </div>
+        <div class="container mt-4">
+            <!-- Error Message -->
+            <div th:if="${error}" class="alert alert-danger" role="alert">
+                <p th:text="${error}"></p>
+            </div>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary btn-block">Verify OTP</button>
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
