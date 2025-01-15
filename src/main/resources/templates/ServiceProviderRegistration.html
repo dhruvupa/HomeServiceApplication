@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Service Provider Registration</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Register as a Service Provider</h1>
+  <form th:action="@{/ServiceProvider/ServiceProviderRegistrationSuccess}" th:object="${ServiceProvider}" method="post" class="bg-white p-4 rounded shadow-sm">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" th:field="*{name}" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" th:field="*{email}" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" th:field="*{password}" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+      <label for="phoneno">Phone Number:</label>
+      <input type="text" id="phoneno" th:field="*{phoneno}" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+      <label for="city">City:</label>
+      <input type="text" id="city" th:field="*{city}" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block">Register</button>
+  </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
